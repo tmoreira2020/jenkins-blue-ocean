@@ -24,9 +24,7 @@ class Setup {
     def StandardUsernamePasswordCredentials createCredential(user, githubToken) {
         String credentialId = "github"
         StandardUsernamePasswordCredentials credential = new UsernamePasswordCredentialsImpl(CredentialsScope.USER, credentialId, "GitHub Access Token", user.getId(), githubToken)
-        println user
-        println githubToken
-        println credential
+
         return credential
     }
 
@@ -58,8 +56,7 @@ class Setup {
     def SCMSource createSource(orgName, projectName) {
         Set<ChangeRequestCheckoutStrategy> strategies = new HashSet<>()
         strategies.add(ChangeRequestCheckoutStrategy.MERGE)
-        println orgName
-        println projectName
+
         return new GitHubSCMSourceBuilder("blueocean", "https://api.github.com", "github",
                 orgName,
                 projectName)
@@ -106,9 +103,6 @@ def admin = setup.login("admin")
 def credentialsStore = setup.getCredentialsStore(admin)
 def domain = setup.createDomain()
 def credential = setup.createCredential(admin, env.GITHUB_TOKEN)
-
-println credentialsStore
-println domain
 
 credentialsStore.addDomain(domain)
 credentialsStore.addCredentials(domain, credential)
