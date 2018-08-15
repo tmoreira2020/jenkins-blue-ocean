@@ -107,4 +107,8 @@ def credential = setup.createCredential(admin, env.GITHUB_TOKEN)
 credentialsStore.addDomain(domain)
 credentialsStore.addCredentials(domain, credential)
 
-def project = setup.createProject(admin, credential, orgName, projectName)
+setup.createProject(admin, credential, orgName, projectName)
+
+println "****************************************************************"
+println " Blue Ocean setup complete for ${orgName}/${projectName}"
+println "****************************************************************"
